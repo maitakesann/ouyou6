@@ -23,14 +23,14 @@
           <%end%>
           <td>
             <% if @book.favorited_by?(current_user) %>
-              <p>
-               <%= link_to book_favorites_path(@book.id), method: :delete do %>
+              <p id="likes_buttons_<%= @book.id %> ">
+               <%= link_to book_favorites_path(@book.id), method: :delete, remote: true do %>
                ♥<%= @book.favorites.count %> いいねを取り消す
                <% end %>
               </p>
               <% else %>
-              <p>
-                <%= link_to book_favorites_path(@book.id), method: :post do %>
+              <p id="likes_buttons_<%= @book.id %> ">
+                <%= link_to book_favorites_path(@book.id), method: :post, remote: true do %>
                   ♡<%= @book.favorites.count %> いいね
                 <% end %>
               </p>
@@ -51,7 +51,7 @@
           <%= link_to "削除", book_book_comment_path(book_comment.book_id, book_comment), method: :delete %>
           </div>
         </div>
-        
+
         <% end %>
       <% end %>
       </div>
