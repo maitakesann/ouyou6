@@ -1,0 +1,16 @@
+<div class="comments">
+<p>コメント件数：<%= book.book_comments.count %></p>
+  <% book.book_comments.each do |book_comment| %>
+  <div class="container" >
+    <%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+    <% book_comment.user.name %>
+    <% book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %>
+    <% if book_comment.user == current_user %>
+    <div class="comment-delete btn btn-danger">
+    <%= link_to "削除", book_book_comment_path(book_comment.book_id, book_comment), method: :delete, remote: true %>
+    </div>
+    <% end %>
+  </div>
+  
+<% end %>
+</div>
